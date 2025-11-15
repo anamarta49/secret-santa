@@ -1,6 +1,15 @@
 import Airtable from "airtable";
 
 
+const tableName = process.env.AIRTABLE_TABLE || "Participants";
+
+
+export async function handler(event) {
+const base = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base(
+process.env.AIRTABLE_BASE_ID
+);
+
+
 if (event.httpMethod === "GET") {
 const { token, recordId } = event.queryStringParameters || {};
 if (!token || !recordId) {
@@ -63,3 +72,4 @@ return { statusCode: 500, body: "Server error" };
 
 
 return { statusCode: 405, body: "Method Not Allowed" };
+}

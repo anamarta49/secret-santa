@@ -15,36 +15,34 @@ const j = Math.floor(Math.random() * (i + 1));
 return a;
 }
 
-
 export async function handler(event) {
-const auth = (event.headers.authorization || "").replace(/^Bearer\s*/i, "");
-if (!auth || auth !== process.env.ADMIN_KEY) {
-return { statusCode: 403, body: "Forbidden" };
-}
-
-
-const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-process.env.AIRTABLE_BASE
-);
-
-
-try {
-const records = await base(tableName).select({ view: "Grid view" }).all();
-const people = records.map((r) => ({ id: r.id, name: r.get("Name"), email: r.get("Email") }));
-
-
-if (people.length < 2) {
-return { statusCode: 400, body: "Need at least 2 participants" };
-}
-
-
-const shuffled = shuffle(people);
-// pair each i -> (i+1)%n
-const assignments = shuffled.map((giver, i) => ({
-giver,
-receiver: shuffled[(i + 1) % shuffled.length],
-}));
-
+    const auth = (event.headers.authorization || "").replace(/^Bearer\s*/i, "");
+    if (!auth || auth !== process.env.ADMIN_KEY) {
+    return { statusCode: 403, body: "Forbidden" };
+    }
+    
+    
+    const base = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base(
+    process.env.AIRTABLE_BASE_ID
+    );
+    
+    
+    try {
+    const records = await base(tableName).select({ view: "Grid view" }).all();
+    const people = records.map((r) => ({ id: r.id, name: r.get("Name"), email: r.get("Email") }));
+    
+    
+    if (people.length < 2) {
+    return { statusCode: 400, body: "Need at least 2 participants" };
+    }
+    
+    
+    const shuffled = shuffle(people);
+    // pair each i -> (i+1)%n
+    const assignments = shuffled.map((giver, i) => ({
+    giver,
+    receiver: shuffled[(i + 1) % shuffled.length],
+    }));
 
 // Save assignments to Airtable and send emails
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -70,13 +68,13 @@ text: `Hi ${pair.giver.name},\n\nYou're the Secret Santa for: ${pair.receiver.na
 
 // Send all emails (SendGrid supports batched sends but we'll send sequentially to be simple)
 for (const m of msgs) {
-    await sgMail.send(m);
-    }
-    
-    
-    return { statusCode: 200, body: JSON.stringify({ ok: true, count: assignments.length }) };
-    } catch (err) {
-    console.error(err);
-    return { statusCode: 500, body: "Server error" };
-    }
-    }
+await sgMail.send(m);
+}
+
+
+return { statusCode: 200, body: JSON.stringify({ ok: true, count: assignments.length }) };
+} catch (err) {
+console.error(err);
+return { statusCode: 500, body: "Server error" };
+}
+}
