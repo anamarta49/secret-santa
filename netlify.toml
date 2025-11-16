@@ -1,8 +1,8 @@
 [build]
-  command = "npm install"
-  publish = "public"
+  command = "npm run build"
+  publish = "secret-santa"
   functions = "netlify/functions"
 
 [dev]
   functions = "netlify/functions"
-  publish = "public"
+  publish = "secret-santa"
