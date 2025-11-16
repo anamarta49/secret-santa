@@ -1,0 +1,9 @@
+{
+    "name": "secret-santa",
+    "version": "1.0.0",
+    "dependencies": {
+        "@sendgrid/mail": "^8.1.6",
+        "airtable": "^0.12.2",
+        "uuid": "^13.0.0"
+    }
+}
