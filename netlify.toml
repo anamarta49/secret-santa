@@ -1,7 +1,7 @@
 [build]
   base = "secret-santa"
   command = "npm run build"
-  publish = "browser"
+  publish = "dist/secret-santa"
 
 [functions]
   directory = "../netlify/functions"
