@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Vamos a isso?</h1>
+  <input [(ngModel)]="name" placeholder="O meu nome" />
+  <input [(ngModel)]="email" placeholder="O meu e-mail" type="email" />
+  <button (click)="submit()" [disabled]="loading()">Registar!</button>
+  <p>{{ message() }}</p>
+</div>

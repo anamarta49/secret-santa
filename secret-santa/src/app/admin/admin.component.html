@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Secret Santos Admin</h1>
+
+  @if (!authenticated()) {
+  <input type="password" placeholder="Enter admin key" [(ngModel)]="adminKey" />
+  <button (click)="login()">Login</button>
+  <p>{{ message() }}</p>
+  } @else {
+
+  <button (click)="fetchParticipants()">Refresh</button>
+  <button (click)="sendAssignments()">Send Assignments</button>
+  <p>{{ message() }}</p>
+
+  @if (loading()) {
+  <div>Loading...</div>
+  } 
+  @if (participants().length > 0) {
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (p of participants(); track $index) {
+      <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.email }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  } }
+</div>
