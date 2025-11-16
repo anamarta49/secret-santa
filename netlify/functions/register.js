@@ -42,7 +42,7 @@ export async function handler(event) {
       to: email,
       from: process.env.FROM_EMAIL,
       subject: `Thanks for joining Secret Santa!`,
-      text: `Hi ${name},\n\nThanks for registering for our Secret Santa. If you need to update your name or email later, use this secure edit link:\n\n${editLink}\n\nKeep it secret!`,
+      text: `Hi ${name},\n\nThanks for registering for our Secret Santa! 🎄`,
     };
 
     await sgMail.send(msg);
