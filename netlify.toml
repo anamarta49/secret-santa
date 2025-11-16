@@ -4,7 +4,7 @@
   publish = "dist/secret-santa/browser"
 
 [functions]
-  directory = "netlify/functions"
+  directory = "../netlify/functions"
 
 [[redirects]]
   from = "/*"
