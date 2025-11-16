@@ -6,3 +6,8 @@
 [dev]
   functions = "netlify/functions"
   publish = "secret-santa"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
