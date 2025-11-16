@@ -1,13 +1,7 @@
 [build]
+  base = "secret-santa"
   command = "npm run build"
-  publish = "secret-santa"
-  functions = "netlify/functions"
+  publish = "secret-santa/dist"
 
-[dev]
-  functions = "netlify/functions"
-  publish = "secret-santa"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[functions]
+  directory = "netlify/functions"
