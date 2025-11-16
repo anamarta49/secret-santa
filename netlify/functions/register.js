@@ -31,7 +31,7 @@ export async function handler(event) {
     });
 
     // Send confirmation email with edit link
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    sgMail.setApiKey(process.env.SENDGRID_KEY);
 
     const siteUrl = process.env.SITE_URL || "";
     const editLink = `${siteUrl}/.netlify/functions/edit?token=${encodeURIComponent(
