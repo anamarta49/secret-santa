@@ -5,7 +5,6 @@
 
 [functions]
   directory = "../netlify/functions"
-  command = "npm install"
 
 [[redirects]]
   from = "/*"
