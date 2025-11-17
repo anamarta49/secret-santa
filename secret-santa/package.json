@@ -20,10 +20,7 @@
     "@angular/router": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.3",
-    "@sendgrid/mail": "^8.1.6",
-    "airtable": "^0.12.2",
-    "uuid": "^13.0.0"
+    "zone.js": "~0.14.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.0.3",
