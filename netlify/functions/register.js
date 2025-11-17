@@ -1,6 +1,7 @@
-import Airtable from "airtable";
-import sgMail from "@sendgrid/mail";
-import { randomUUID } from "crypto";
+const Airtable = require("airtable");
+const sgMail = require("@sendgrid/mail");
+const randomUUID = require("crypto")
+
 
 const tableName = process.env.AIRTABLE_TABLE || "Participants";
 
