@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { HttpClient, HttpHeaders, provideHttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -30,7 +30,15 @@ export class AdminComponent {
     const headers = new HttpHeaders({ 'X-Admin-Key': this.adminKey() });
     this.http.get<any[]>('/.netlify/functions/list', { headers }).subscribe({
       next: data => { this.participants.set(data); this.loading.set(false); },
-      error: () => { this.message.set('Failed to load participants'); this.loading.set(false); }
+      error: (error) => { 
+        if (error.statusCode === 401) {
+          this.message.set('Key was not recognized'); 
+          this.authenticated.set(false);
+        } else {
+          this.message.set('Failed to load participants'); 
+        }
+        this.loading.set(false); 
+      }
     });
   }
 
