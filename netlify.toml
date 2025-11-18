@@ -4,8 +4,9 @@
   publish = "dist/secret-santa/browser"
   functions = "../netlify/functions"
 
-[functions]
-  node_bundler = "esbuild"
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
+
 
 [[redirects]]
   from = "/*"
