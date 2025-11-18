@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent {
   adminKey = signal('');
@@ -19,8 +19,10 @@ export class AdminComponent {
   constructor(private http: HttpClient) {}
 
   login() {
-    if (!this.adminKey()) { this.message.set('Enter admin key'); return; }
-    this.authenticated.set(true);
+    if (!this.adminKey()) {
+      this.message.set('Enter admin key');
+      return;
+    }
     this.message.set('');
     this.fetchParticipants();
   }
@@ -29,16 +31,20 @@ export class AdminComponent {
     this.loading.set(true);
     const headers = new HttpHeaders({ 'X-Admin-Key': this.adminKey() });
     this.http.get<any[]>('/.netlify/functions/list', { headers }).subscribe({
-      next: data => { this.participants.set(data); this.loading.set(false); },
-      error: (error) => { 
+      next: (data) => {
+        this.authenticated.set(true);
+        this.participants.set(data);
+        this.loading.set(false);
+      },
+      error: (error) => {
         if (error.status === 401) {
-          this.message.set('Key was not recognized'); 
+          this.message.set('Key was not recognized');
           this.authenticated.set(false);
         } else {
-          this.message.set('Failed to load participants'); 
+          this.message.set('Failed to load participants');
         }
-        this.loading.set(false); 
-      }
+        this.loading.set(false);
+      },
     });
   }
 
@@ -46,8 +52,14 @@ export class AdminComponent {
     this.loading.set(true);
     const headers = new HttpHeaders({ 'X-Admin-Key': this.adminKey() });
     this.http.post('/.netlify/functions/assign', {}, { headers }).subscribe({
-      next: () => { this.message.set('Assignments sent successfully'); this.loading.set(false); },
-      error: () => { this.message.set('Failed to send assignments'); this.loading.set(false); }
+      next: () => {
+        this.message.set('Assignments sent successfully');
+        this.loading.set(false);
+      },
+      error: () => {
+        this.message.set('Failed to send assignments');
+        this.loading.set(false);
+      },
     });
   }
 }
