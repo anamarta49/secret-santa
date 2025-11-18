@@ -5,7 +5,7 @@
   functions = "../netlify/functions"
 
 [functions]
-  node_bundler = "npm"
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/*"
