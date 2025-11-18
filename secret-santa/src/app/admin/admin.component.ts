@@ -31,7 +31,7 @@ export class AdminComponent {
     this.http.get<any[]>('/.netlify/functions/list', { headers }).subscribe({
       next: data => { this.participants.set(data); this.loading.set(false); },
       error: (error) => { 
-        console.log(error);
+        console.error(error);
         
         if (error.statusCode === 401) {
           this.message.set('Key was not recognized'); 
