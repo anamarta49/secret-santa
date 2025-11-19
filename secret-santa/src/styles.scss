@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "site-font";
+  src: url("/fonts/House-Camping.ttf") format("trueType");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+$site-font: "site-font";
+
+body {
+  //background: linear-gradient(135deg, #952525 0%, #cdba50 70%);
+  background:
+    linear-gradient(
+        rgb(255, 255, 255),   /* top: darker */
+        rgb(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.8),
+        rgba(0, 0, 0, 0),    /* bottom: transparent */
+    ),
+    url("/ribbon.jpg");
+  min-height: 100vh;
+}
+
