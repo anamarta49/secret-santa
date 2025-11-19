@@ -9,7 +9,6 @@
 $site-font: "site-font";
 
 body {
-  //background: linear-gradient(135deg, #952525 0%, #cdba50 70%);
   background:
     linear-gradient(
         rgb(255, 255, 255),   /* top: darker */
@@ -19,5 +18,11 @@ body {
     ),
     url("/ribbon.jpg");
   min-height: 100vh;
+  h2 {
+    font-family: $site-font, sans-serif;
+  }
+  p, small, button, input {
+    font-family: "Lucida Sans Typewriter"
+  }
 }
 

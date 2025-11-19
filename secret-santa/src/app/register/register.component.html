@@ -1,7 +1,20 @@
-<div class="container">
-  <h1>Vamos a isso?</h1>
-  <input [(ngModel)]="name" placeholder="O meu nome" />
-  <input [(ngModel)]="email" placeholder="O meu e-mail" type="email" />
-  <button (click)="submit()" [disabled]="loading()">Registar!</button>
+<div class="container d-flex flex-column">
+  <h2>{{"Bem vind@ ao Pai Natal Secreto!"}}</h2>
+  <p>Regista-te para participar.
+    Quando todos os participantes estiverem inscritos, cada um irá receber um e-mail (secreto!) com o nome da pessoa a quem irá dar o presente.
+    Boa sorte e boas festas!
+  </p>
+  <br/>
+  <small>Nota: Depois de te inscreves irás receber um e-mail de confirmação.
+    Caso não recebas, verifica na pasta Spam e marca como "Não é Spam".</small>
+  <div class="d-flex m-auto p-4">
+    <div class="col-md-9">
+      <input [(ngModel)]="name" placeholder="O meu nome" />
+      <input [(ngModel)]="email" placeholder="O meu e-mail" type="email" />
+    </div>
+    <div class="col-md-3 m-auto">
+      <button class="reg-button" (click)="submit()" [disabled]="loading()">Registar!</button>
+    </div>
+  </div>
   <p>{{ message() }}</p>
 </div>
