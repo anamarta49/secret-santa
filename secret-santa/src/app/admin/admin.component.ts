@@ -29,7 +29,7 @@ export class AdminComponent {
 
   fetchParticipants() {
     this.loading.set(true);
-    const headers = new HttpHeaders({ 'X-Admin-Key': this.adminKey() });
+    const headers = new HttpHeaders({ 'authorization': this.adminKey() });
     this.http.get<any[]>('/.netlify/functions/list', { headers }).subscribe({
       next: (data) => {
         this.authenticated.set(true);
@@ -50,7 +50,7 @@ export class AdminComponent {
 
   sendAssignments() {
     this.loading.set(true);
-    const headers = new HttpHeaders({ 'X-Admin-Key': this.adminKey() });
+    const headers = new HttpHeaders({ 'authorization': this.adminKey() });
     this.http.post('/.netlify/functions/assign', {}, { headers }).subscribe({
       next: () => {
         this.message.set('Assignments sent successfully');
