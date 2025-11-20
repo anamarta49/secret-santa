@@ -1,7 +1,14 @@
-.container {
+:host {
   max-width: 800px;
-  margin: 40px auto;
-  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-bottom: 30px;
 }
 
 input {
@@ -26,4 +33,11 @@ input {
     background-color: rgb(35, 92, 39, 0.90);
   }
   font-size: 19px;
+}
+
+.reminder {
+  background-color: rgba(253, 233, 233, 0.76);
+  border-radius: 100px;
+  padding: 10px 20px;
+  box-shadow: rgba(62, 87, 62, 0.76) 0 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }

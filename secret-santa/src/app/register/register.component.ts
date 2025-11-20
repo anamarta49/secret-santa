@@ -1,11 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NgOptimizedImage],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
@@ -14,6 +15,7 @@ export class RegisterComponent {
   email = signal('');
   message = signal('');
   loading = signal(false);
+  submitted = signal(false);
 
   constructor(private http: HttpClient) {}
 
@@ -33,6 +35,7 @@ export class RegisterComponent {
         this.loading.set(false);
         this.name.set('');
         this.email.set('');
+        this.submitted.set(true);
       },
       error: () => {
         this.message.set('Registration failed.');

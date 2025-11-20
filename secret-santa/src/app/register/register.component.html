@@ -1,20 +1,38 @@
-<div class="container d-flex flex-column">
-  <h2>{{"Bem vind@ ao Pai Natal Secreto!"}}</h2>
-  <p>Regista-te para participar.
-    Quando todos os participantes estiverem inscritos, cada um irá receber um e-mail (secreto!) com o nome da pessoa a quem irá dar o presente.
-    Boa sorte e boas festas!
-  </p>
-  <br/>
-  <small>Nota: Depois de te inscreves irás receber um e-mail de confirmação.
-    Caso não recebas, verifica na pasta Spam e marca como "Não é Spam".</small>
-  <div class="d-flex m-auto p-4">
-    <div class="col-md-9">
-      <input [(ngModel)]="name" placeholder="O meu nome" />
-      <input [(ngModel)]="email" placeholder="O meu e-mail" type="email" />
-    </div>
-    <div class="col-md-3 m-auto">
-      <button class="reg-button" (click)="submit()" [disabled]="loading()">Registar!</button>
-    </div>
-  </div>
-  <p>{{ message() }}</p>
+<div class="container">
+  @if (loading()) {
+    <p class="m-auto text-bg-secondary p-2">Loading...</p>
+  } @else {
+    @if (!submitted()) {
+      <h2>{{ "Bem vind@ ao Pai Natal Secreto!" }}</h2>
+      <p>Regista-te para participar.
+        Quando todos os participantes estiverem inscritos, cada um irá receber um e-mail (secreto!) com o nome da pessoa
+        a quem irá dar o presente.
+        Boa sorte e boas festas!
+      </p>
+      <br/>
+      <small>Nota: Depois de te inscreves irás receber um e-mail de confirmação.
+        Caso não recebas, verifica na pasta Spam e marca como "Não é Spam".</small>
+      <div class="d-flex m-auto p-4 mt-4">
+        <div class="col-md-9">
+          <input [(ngModel)]="name" placeholder="O meu nome"/>
+          <input [(ngModel)]="email" placeholder="O meu e-mail" type="email"/>
+        </div>
+        <div class="col-md-3 m-auto">
+          <button class="reg-button" (click)="submit()" [disabled]="loading()">Registar!</button>
+        </div>
+      </div>
+      <p class="ps-5 h-25">{{ message() }}</p>
+    } @else {
+      <h2>Registo bem sucedido!</h2>
+      <p>Recebemos a tua inscrição.
+        Em breve receberás um e-mail de confirmação.
+        Boa sorte e boas festas!
+      </p>
+      <br/>
+      <img alt="gift" ngSrc="/cat-icon.png" height="200" width="220" class="m-auto"/>
+      <br/>
+      <small class="reminder mt-auto">Nota: Depois de te inscreves irás receber um e-mail de confirmação.
+        Caso não recebas, verifica na pasta Spam e marca como "Não é Spam".</small>
+    }
+  }
 </div>
