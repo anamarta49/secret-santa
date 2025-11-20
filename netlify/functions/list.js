@@ -6,9 +6,8 @@ export async function handler(event, context) {
     const adminToken = process.env.ADMIN_KEY;
 
     const authHeader = event.headers.authorization || "";
-    const token = authHeader.startsWith("Bearer ")
-      ? authHeader.replace("Bearer ", "")
-      : null;
+    const token = (event.headers.authorization || "").replace(/^Bearer\s*/i, "");
+
 
     if (!token || token !== adminToken) {
       return {
