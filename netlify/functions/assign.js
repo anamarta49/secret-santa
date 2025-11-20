@@ -56,6 +56,7 @@ export async function handler(event) {
       msgs.push({
         to: pair.giver.email,
         from: process.env.FROM_EMAIL,
+        replyTo: process.env.FROM_EMAIL,
         subject: "Your Secret Santa assignment!",
         text: `Hi ${pair.giver.name},\n\nYou're the Secret Santa for: ${pair.receiver.name} <${pair.receiver.email}>\n\nHappy gifting!`,
       });
